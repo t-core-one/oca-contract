@@ -613,11 +613,13 @@ class ContractContract(models.Model):
     def _add_contract_origin(self, invoices):
         for item in self:
             for move in invoices & item._get_related_invoices():
-                body = Markup(_("%(msg)s by contract: %(contract_link)s")) % {
-                    "msg": move._creation_message(),
-                    "contract_link": item._get_html_link(title=item.display_name),
-                }
-                move.message_post(body=body)
+                translation = _("by contract")
+                move.message_post(
+                    body=Markup(
+                        f"{move._creation_message()} {translation} "
+                        f"{item._get_html_link(title=item.display_name)}."
+                    )
+                )
 
     def _recurring_create_invoice(self, date_ref=False):
         invoices_values = self._prepare_recurring_invoices_values(date_ref)
@@ -685,12 +687,21 @@ class ContractContract(models.Model):
         }
 
     def _terminate_contract(
-        self, terminate_reason_id, terminate_comment, terminate_date
+        self,
+        terminate_reason_id,
+        terminate_comment,
+        terminate_date,
+        terminate_lines_with_last_date_invoiced=False,
     ):
         self.ensure_one()
         if not self.env.user.has_group("contract.can_terminate_contract"):
             raise UserError(_("You are not allowed to terminate contracts."))
-        self.contract_line_ids.filtered("is_stop_allowed").stop(terminate_date)
+        for line in self.contract_line_ids.filtered("is_stop_allowed"):
+            line.stop(
+                max(terminate_date, line.last_date_invoiced)
+                if terminate_lines_with_last_date_invoiced and line.last_date_invoiced
+                else terminate_date
+            )
         self.write(
             {
                 "is_terminated": True,

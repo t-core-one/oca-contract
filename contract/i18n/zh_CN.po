@@ -21,13 +21,6 @@ msgstr ""
 "X-Generator: Weblate 3.8\n"
 
 #. module: contract
-#. odoo-python
-#: code:addons/contract/models/contract.py:0
-#, python-format
-msgid "%(msg)s by contract: %(contract_link)s"
-msgstr ""
-
-#. module: contract
 #: model:mail.template,body_html:contract.email_contract_template
 msgid ""
 "<div style=\"font-family: 'Lucida Grande', Ubuntu, Arial, Verdana, sans-"
@@ -2144,6 +2137,18 @@ msgid "Terminate Contract Wizard"
 msgstr "合同行向导"
 
 #. module: contract
+#: model:ir.model.fields,field_description:contract.field_contract_contract_terminate__terminate_with_last_date_invoiced
+msgid "Terminate lines with last date invoiced"
+msgstr ""
+
+#. module: contract
+#: model:ir.model.fields,help:contract.field_contract_contract_terminate__terminate_with_last_date_invoiced
+msgid ""
+"Terminate the contract lines with the last invoiced date if they cannot be "
+"terminated with the date reported in the wizard."
+msgstr ""
+
+#. module: contract
 #: model:ir.model.fields,field_description:contract.field_contract_contract__is_terminated
 #, fuzzy
 msgid "Terminated"
@@ -2390,6 +2395,13 @@ msgstr "在合同行'%s'的最后一张发票日期之后，您不能拥有开�
 #, python-format
 msgid "You must supply a date of next invoice for contract line '%s'"
 msgstr "您必须为合同行'%s'提供下一张发票的日期"
+
+#. module: contract
+#. odoo-python
+#: code:addons/contract/models/contract.py:0
+#, python-format
+msgid "by contract"
+msgstr ""
 
 #. module: contract
 #: model_terms:ir.ui.view,arch_db:contract.contract_contract_form_view
