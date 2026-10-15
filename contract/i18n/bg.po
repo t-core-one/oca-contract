@@ -828,7 +828,7 @@ msgstr ""
 #: code:addons/contract/wizards/contract_manually_create_invoice.py:0
 #, python-format
 msgid "Contracts to invoice"
-msgstr ""
+msgstr "Договори за фактуриране"
 
 #. module: contract
 #: model:ir.model.fields,help:contract.field_contract_abstract_contract_line__product_uom_category_id
@@ -2120,7 +2120,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:contract.contract_contract_terminate_form_view
 #, python-format
 msgid "Terminate Contract"
-msgstr ""
+msgstr "Прекрати Договора"
 
 #. module: contract
 #: model:ir.model,name:contract.model_contract_contract_terminate
@@ -2319,7 +2319,7 @@ msgstr ""
 #: code:addons/contract/models/contract.py:0
 #, python-format
 msgid "You are not allowed to terminate contracts."
-msgstr ""
+msgstr "Не ти е позволено да прекратяваш договори."
 
 #. module: contract
 #. odoo-python
@@ -2344,7 +2344,7 @@ msgstr ""
 msgid ""
 "You can't have the end date before the date of last invoice for the contract "
 "line '%s'"
-msgstr ""
+msgstr "Крайната дата на договора, не може да е преди датата на последно издадената фактура в реда от договора '%s'"
 
 #. module: contract
 #. odoo-python
